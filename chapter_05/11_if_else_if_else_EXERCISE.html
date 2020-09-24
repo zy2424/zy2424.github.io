@@ -29,14 +29,21 @@
 				.data(dataset)
 				.enter()
 				.append("p")
-				.text(function(d) {
-					return d;
+				.text(function(a) {
+					return a;
 				})
-				.style("color", function(d) {
-                    return "red"
+				.style("color", function(a) {
                     //YOUR CODE WILL BE HERE
                     //
-                    
+                    if (a % 15 == 0) {
+                    	return "green";
+                    } else if (a % 3 == 0) {
+                    	return "blue";
+                    } else if (a % 5 == 0) {
+                    	return "red";
+                    } else {
+                    	return "black";
+                    }
                     //HINT: think about the order of the if else statements, they are not in the order I have listed above.
                     //you will need a statement for each of the 4 conditions which I have written below
                     //Step 1: uncomment by erasing the /* and */ bracketing this code block
