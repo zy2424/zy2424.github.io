@@ -18,8 +18,8 @@
             //4. change the svg dimensions(w or h variables) so that all circles fit into svg and are not clipped.
             
 			//Width and height
-			var w = 300;
-			var h = 20;
+			var w = 300000;
+			var h = 200;
 			
 			//Dataset of fake planets
 			var dataset = [
@@ -43,16 +43,20 @@
 
 			circles.attr("cx", function(d, i) {
             //change distance here
-						return (i * 50) + 25;
+						return d. distance;
 					})
 				   .attr("cy", h/2)
 				   .attr("r", function(d) {
              //change radius here
-						return 5;
+						return d. radius;
 				   })
 				   .attr("fill", function(d){
+				   		if (d. radius > 5) {
+				   			return "red"
+				   		} else {
+				   			return "gold"
+				   		}
                //you will put "if else" statement here to return 2 things depending on the radius(d) instead of return gold
-				       return "gold"
 				   })
 				   .attr("stroke-width",2);
 

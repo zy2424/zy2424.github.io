@@ -48,7 +48,7 @@
 			   		return d.r
 			   })
          .attr("fill",function(d){
-             return "blue"//NOTE: ADD YOUR CODE HERE TO FULFILL ONE OF THE 2 ASSIGNMENT CHOICES
+             return "rgb(0, " + Math.round(d.r * 20 + 20) + ", 0)"//NOTE: ADD YOUR CODE HERE TO FULFILL ONE OF THE 2 ASSIGNMENT CHOICES
          });
 
 			svg.selectAll("text")
@@ -56,7 +56,7 @@
 			   .enter()
 			   .append("text")
 			   .text(function(d) {
-			   		return "label here"
+			   		return d. label 
 			   })
 			   .attr("x", function(d) {
 			   		return d.x+d.r;
