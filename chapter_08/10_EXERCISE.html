@@ -64,6 +64,12 @@
 								])
 							   .range([h - padding, padding]);
 
+				cScale = d3.scaleLinear()
+							   .domain([
+									0,  //Because I want a zero baseline
+									d3.max(dataset, function(d) { return d.Amount; })
+								])
+								.range(["red", "green"]);
                //TODO: make a linear scale named cScale for the colors you will use
                 //HINT: the domain is the Amount, and the range is an array of 2 colors such as ["red","blue"]
 				           
@@ -72,7 +78,7 @@
 				//Define X axis
 				xAxis = d3.axisBottom()
 								  .scale(xScale)
-								  .ticks(9)//TODO: change ticks 
+								  .ticks(40)//TODO: change ticks 
 								  .tickFormat(formatTime);
 
 				//Define Y axis
@@ -103,9 +109,9 @@
 				   .attr("y2", function(d) {
 				   		return yScale(d.Amount);
 				   })
-                   .attr("stroke",function(d){
+                   .attr("stroke",function(d) {
                        //TODO: replace the color below by using your newly created cScale turn the amount into a corresponding color
-                      return "#000"
+                      return cScale(d.Amount);
                    })
 				   .attr("stroke-width", 1);
 
@@ -121,7 +127,8 @@
 				   		return yScale(d.Amount);
 				   })
 				   .attr("r", 3)
-                   .attr("fill",function(d){
+                   .attr("fill",function(d) {
+                   		return cScale(d.Amount);
                        //TODO: use your newly created cScale to the amount and return the corresponding color
                      
                    });
