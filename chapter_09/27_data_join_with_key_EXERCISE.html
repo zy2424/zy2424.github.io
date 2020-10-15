@@ -160,20 +160,35 @@
 					//
 					//Exercise: Modify this code to remove the correct label each time!
 					//
-					svg.selectAll("text")
-					   .data(dataset, key)		//Bind data with custom key function
-					   .transition()
-					   .duration(500)
-					   .text(function(d) {
-					   		return d.value;
-					   })
-					   .attr("x", function(d, i) {
-							return xScale(i) + xScale.bandwidth() / 2;
-					   })
-					   .attr("y", function(d) {
-							return h - yScale(d.value) + 14;
-					   });
-
+					var labels = svg.selectAll("text")			//Select all bars
+						.data(dataset, key);
+					labels.enter()
+					      .append("text")
+					      .attr("text-anchor", "middle")
+					      .attr("x", w)
+					      .attr("y", function(d) {
+					   		   return h - yScale(d.value) + 14;
+					      })
+					      .attr("font-family", "sans-serif")
+			              .attr("font-size", "11px")
+			              .attr("fill", "white")
+					      .merge(labels)
+					      .transition()
+					      .duration(500)
+					      .text(function(d) {
+					   		   return d.value;
+					      })
+					      .attr("x", function(d, i) {
+					   		   return xScale(i) + xScale.bandwidth() / 2;
+					      })
+					      .attr("y", function(d) {
+							   return h - yScale(d.value) + 14;
+					      });
+                    labels.exit()				//References the exit selection (a subset of the update selection)
+					      .transition()		//Initiates a transition on the one element we're deleting
+				          .duration(500)
+	                      .attr("x", -xScale.bandwidth())		//Move past the right edge of the SVG
+					      .remove();  
 				});
 
 			
