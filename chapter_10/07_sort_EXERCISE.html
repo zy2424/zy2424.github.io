@@ -91,9 +91,16 @@
 				   });
                    
                    //TODO: move the labels accordingly within the sortBars function here
-                   //start by selecting all text
-                   
-
+                   //start by selecting all text    
+				svg.selectAll("text")
+				   .sort(function(a, b) {
+					   return d3.ascending(a, b);
+				   	})
+				   .transition()
+				   .duration(1000)
+				   .attr("x", function(d, i) {
+				   		return xScale(i) + xScale.bandwidth() / 2;	
+				   });	   
 			};			
 			
 		</script>

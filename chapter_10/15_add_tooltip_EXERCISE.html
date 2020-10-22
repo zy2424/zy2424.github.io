@@ -39,8 +39,8 @@
 			}
 
 			//Load in the data
-			d3.csv("../time_scale_data.csv", rowConverter)
-            .then(function(d) {
+			d3.csv("/chapter_10/time_scale_data.csv", rowConverter)
+            .then(function(data) {
 				//Copy data into global dataset
 				dataset = data;
 
@@ -114,12 +114,25 @@
 				   		return yScale(d.Amount);
 				   })
 				   .attr("r", 5)
-                   .on("mouseover",function(d,i){
+                   .on("mouseover",function(d,i){             	
                        d3.select(this).attr("fill","red")
+					   var xPosition = parseFloat(d3.select(this).attr("cx"));
+					   var yPosition = parseFloat(d3.select(this).attr("cy"));    
+					svg.append("text")
+					   .attr("id", "tooltip")
+					   .attr("x", xPosition)
+					   .attr("y", yPosition - 14)
+					   .attr("text-anchor", "middle")
+					   .attr("font-family", "sans-serif")
+					   .attr("font-size", "11px")
+					   .attr("font-weight", "bold")
+					   .attr("fill", "black")
+					   .text(d.Amount);
                        //TODO: show tooltip here
                    })
                    .on("mouseout",function(d,i){
                        d3.select(this).attr("fill","black")
+					   d3.select("#tooltip").remove();                       
                        //TODO: hide tooltip here
                    });
 	   			
