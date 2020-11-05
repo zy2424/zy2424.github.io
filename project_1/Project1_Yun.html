@@ -72,7 +72,7 @@ d3.csv("/project_1/data.csv", function(data) {
           .padRadius(innerRadius))
 
     .on("mouseover",function(d){
-        d3.select(this).attr("fill","red")
+        d3.select(this).attr("fill","orange")
     svg.append("g")
        .attr("id", "tooltip")
        .selectAll("g")
@@ -82,6 +82,7 @@ d3.csv("/project_1/data.csv", function(data) {
         .text(d.Value)
         .style("font-size", "20px")
         .attr("alignment-baseline", "middle")
+        .attr("fill", "orange")
         .attr("x",-25)
         .attr("y",5)
      })
