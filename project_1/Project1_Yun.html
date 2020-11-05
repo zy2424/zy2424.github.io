@@ -71,21 +71,19 @@ d3.csv("/project_1/data.csv", function(data) {
           .padAngle(0.01)
           .padRadius(innerRadius))
 
-    .on("mouseover",function(d,i){
+    .on("mouseover",function(d){
         d3.select(this).attr("fill","red")
     svg.append("g")
        .attr("id", "tooltip")
        .selectAll("g")
        .data(data)
        .enter()
-       .append("g")
-        .attr("text-anchor", function(d,i) { return (x(d.Contact) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
-        .attr("transform", function(d,i) { return "rotate(" + ((x(d.Contact) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")"+"translate(" + (outerRadius - 7) + ",0)"; })
        .append("text")
-        .text(function(d,i){return(d.Value)})
-        .attr("transform", function(d,i) { return (x(d.Contact) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
-        .style("font-size", "11px")
+        .text(d.Value)
+        .style("font-size", "20px")
         .attr("alignment-baseline", "middle")
+        .attr("x",-25)
+        .attr("y",5)
      })
     .on("mouseout",function(d){
          d3.select(this).attr("fill","#69b3a2")
